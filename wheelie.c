@@ -38,6 +38,7 @@
 #define VENDOR_ID 0x955
 #define TEGRA2_PRODUCT_ID 0x7820
 #define TEGRA33_PRODUCT_ID 0x7330
+#define TEGRA_AP33_PRODUCT_ID 0x7130
 #define TEGRA30_PRODUCT_ID 0x7030
 
 static void usage() {
@@ -161,6 +162,9 @@ int main(int argc, char * const* argv) {
         if(device >= 0) break;
         device = nvusb_detect_device(VENDOR_ID, TEGRA33_PRODUCT_ID, &nvdev);
         usleep(250000); 
+        if(device >= 0) break;
+        device = nvusb_detect_device(VENDOR_ID, TEGRA_AP33_PRODUCT_ID, &nvdev);
+        usleep(250000);
         if(device >= 0) break;
         device = nvusb_detect_device(VENDOR_ID, TEGRA30_PRODUCT_ID, &nvdev);
         usleep(250000); 
